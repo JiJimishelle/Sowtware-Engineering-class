@@ -1,0 +1,60 @@
+import random
+import string 
+def generate_pass(U_case = True, L_case= True, num= True, special_char= True, lenght= 8):
+    characters = ""
+    if U_case:
+        characters += string.ascii_uppercase
+    if L_case:
+        characters += string.ascii_lowercase
+    if num:
+        characters += string.digits
+    if special_char:
+        characters += string.punctuation
+    lenght
+    return ''.join(random.choice(characters) for _ in range(lenght))
+    
+def get_user_input():
+    print("Letter options:")
+    print("1.Upper case letters only")
+    print("2.Lower case letters only")
+    print("3.Both")
+    letter_opt = int(input("Enter your choice: "))
+    
+    print("Numbers and special character options:")
+    print("1.Only numbers")
+    print("2.Only special characters")
+    print("3.Both")
+    print("4.None")
+    num_special_opt= int(input("Enter your choice: "))
+    
+    lenght = int(input("Enter the lenght of the password(default is 8, max is 16): "))
+    if lenght >=16:
+        lenght = 8
+        print("Password lenght cannot exceed 16. Generating password with lenght 8 instead...")
+    elif lenght < 8:
+        lenght = 8
+        print("Password lenght has to be 8 to 16. Generating password with lenght 8 instead...")
+        
+    return letter_opt, num_special_opt, lenght
+
+def main():
+    print("Let's create a stronger password!")
+    letter_opt, num_special_opt, lenght = get_user_input()
+    
+    U_case = True if letter_opt in [1,3] else False
+    L_case = True if letter_opt in [2,3] else False
+    num = True if num_special_opt in [1,3] else False
+    special_char = True if num_special_opt in [2,3] else False
+    
+    password = generate_pass(U_case, L_case, num, special_char ,lenght)
+    print("Generated password:", password)
+
+if __name__ == '__main__':
+    main()
+    
+    
+    
+    
+    
+    
+    
